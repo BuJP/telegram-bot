@@ -39,7 +39,7 @@ export class LinksCommand extends TelegramAction {
 
       const missingChatIdLinks = this.configuration.premiumChatIds.filter(
         (chatId) => {
-          return userLinks.find((userLink) => userLink.chat_id === chatId);
+          return !userLinks.find((userLink) => userLink.chat_id === chatId);
         }
       );
 
