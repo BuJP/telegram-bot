@@ -1,5 +1,5 @@
 export type HandlerConfiguration = {
-  basicChatId: number;
+  basicChatId: string;
   premiumChatIds: string[];
   requiredChildrens: number;
 };

@@ -13,7 +13,7 @@ export class ChatMemberHandler extends TelegramAction {
   ) {
     // Check if the update is from the correct chat and if the user is a new member
     if (
-      ctx.chat.id !== this.configuration.basicChatId ||
+      ctx.chat.id.toString() !== this.configuration.basicChatId ||
       ctx.chatMember.new_chat_member.status !== "member"
     ) {
       return;

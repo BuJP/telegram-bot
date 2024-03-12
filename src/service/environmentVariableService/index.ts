@@ -12,7 +12,7 @@ export class EnvironmentVariableService {
   public get<T extends keyof EnvVariables>(key: T): EnvVariables[T] {
     const variable = this.variables[key];
 
-    if (!variable) {
+    if (variable === undefined) {
       throw new Error(`Environment variable "${key}" not found.`);
     }
 
