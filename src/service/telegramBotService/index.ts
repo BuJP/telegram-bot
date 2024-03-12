@@ -5,7 +5,7 @@ import { TelegramAction } from "./action";
 import { ChatMemberHandler } from "./handlers/chatMember";
 import { InfoCommand } from "./commands/info";
 import { LinksCommand } from "./commands/links";
-import { HandlerConfiguration } from "./types";
+import { HandlerConfiguration, TelegramActionConstructor } from "./types";
 
 export class TelegramBotService {
   private readonly bot: Telegraf;
@@ -25,10 +25,15 @@ export class TelegramBotService {
         this.environmentVariableService.get("REQUIRED_CHILDREN"),
     };
 
+    const actionsConstructor: TelegramActionConstructor = {
+      bot: this.bot,
+      configuration: actionsConfiguration,
+    };
+
     this.actions = [
-      new ChatMemberHandler(this.bot, actionsConfiguration),
-      new InfoCommand(this.bot, actionsConfiguration),
-      new LinksCommand(this.bot, actionsConfiguration),
+      new ChatMemberHandler(actionsConstructor),
+      new InfoCommand(actionsConstructor),
+      new LinksCommand(actionsConstructor),
     ];
   }
 

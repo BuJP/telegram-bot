@@ -2,8 +2,13 @@ import { Context, NarrowedContext } from "telegraf";
 import { Update } from "telegraf/typings/core/types/typegram";
 import { TelegramAction } from "../action";
 import prisma from "../../../lib/prisma";
+import { TelegramActionConstructor } from "../types";
 
 export class ChatMemberHandler extends TelegramAction {
+  constructor(constructor: TelegramActionConstructor) {
+    super(constructor);
+  }
+
   public async init() {
     this.bot.on("chat_member", this.handle);
   }

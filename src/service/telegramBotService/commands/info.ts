@@ -1,7 +1,12 @@
 import prisma from "../../../lib/prisma";
 import { TelegramAction } from "../action";
+import { TelegramActionConstructor } from "../types";
 
 export class InfoCommand extends TelegramAction {
+  constructor(constructor: TelegramActionConstructor) {
+    super(constructor);
+  }
+
   public async init() {
     this.bot.command("info", async (ctx) => {
       // Find the user in the database

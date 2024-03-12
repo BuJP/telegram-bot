@@ -1,11 +1,14 @@
 import { Telegraf } from "telegraf";
-import { HandlerConfiguration } from "./types";
+import { HandlerConfiguration, TelegramActionConstructor } from "./types";
 
 export abstract class TelegramAction {
-  constructor(
-    protected readonly bot: Telegraf,
-    protected readonly configuration: HandlerConfiguration
-  ) {}
+  protected readonly bot: Telegraf;
+  protected readonly configuration;
+
+  constructor(constructor: TelegramActionConstructor) {
+    this.bot = constructor.bot;
+    this.configuration = constructor.configuration;
+  }
 
   abstract init(): void;
 }
