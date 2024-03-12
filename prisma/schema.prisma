@@ -40,7 +40,7 @@ model Relation {
 model Premium_link {
   id Int @id @default(autoincrement())
   user User @relation("user", fields: [user_id], references: [id])
-  user_id String @unique
+  user_id String 
   chat_id String @unique
   link String
 }
