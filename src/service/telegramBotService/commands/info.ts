@@ -32,7 +32,7 @@ export class InfoCommand extends TelegramAction {
             user.childrens.length
           } utilisateurs de rejoindre le canal. Il ne vous manque plus que ${
             this.configuration.requiredChildrens - user.childrens.length
-          } utilisateurs pour débloquer l'accès au canal premium. Continuez à partager votre lien d'invitation unique : ${
+          } utilisateurs pour débloquer l'accès au canal premium. Continuez à partager votre lien d'invitation unique : \n\n${
             user.invitation_link
           }`
         );
@@ -41,7 +41,7 @@ export class InfoCommand extends TelegramAction {
       }
 
       ctx.reply(
-        `Votre lien a permis à ${user.childrens.length} utilisateurs de rejoindre le canal. Pour accéder à vos liens premium, veuillez envoyer "/links".`
+        `Votre lien a permis à ${user.childrens.length} utilisateurs de rejoindre le canal. \n\nPour accéder à vos liens premium, veuillez envoyer "/links".`
       );
     });
   }
