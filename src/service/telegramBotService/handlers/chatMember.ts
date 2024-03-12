@@ -10,7 +10,7 @@ export class ChatMemberHandler extends TelegramAction {
   }
 
   public async init() {
-    this.bot.on("chat_member", this.handle);
+    this.bot.on("chat_member", this.handle.bind(this));
   }
 
   private async handle(
