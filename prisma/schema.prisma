@@ -9,15 +9,15 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "postgresql"
+  url   = env("DATABASE_URL")
 }
 
 model User {
   id String @id @default(cuid())
   telegram_id String @unique
   invitation_link String
-  premium_link String?
+  premium_links Premium_link[] @relation("user")
   childrens Relation[] @relation("children_user")
   parent Relation? @relation("parent_user")
   createdAt DateTime @default(now())
@@ -34,4 +34,13 @@ model Relation {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+
+model Premium_link {
+  id Int @id @default(autoincrement())
+  user User @relation("user", fields: [user_id], references: [id])
+  user_id String 
+  chat_id String @unique
+  link String
 }

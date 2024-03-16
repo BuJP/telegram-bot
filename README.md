@@ -16,60 +16,62 @@ A Telegram bot implemented in Node.js using the Telegraf framework, designed to 
 
 1. **Clone the repository:**
 
-    ```bash
-    git clone <repository-url>
-    cd telegram-bot
-    ```
+   ```bash
+   git clone <repository-url>
+   cd telegram-bot
+   ```
 
 2. **Install dependencies using Yarn:**
 
-    ```bash
-    yarn install
-    ```
+   ```bash
+   yarn install
+   ```
 
 3. **Set up your environment variables:**
 
-    Create a `.env` file in the root of your project and add the following:
+   Create a `.env` file in the root of your project and add the following:
 
-    ```env
-    TELEGRAM_BOT_TOKEN=your-telegram-bot-token
-    TELEGRAM_WEBHOOK_DOMAIN=your-webhook-domain
-    REQUIRED_CHILDREN=3
-    PREMIUM_CHAT_ID=-100...
-    BASIC_CHAT_ID=-100...
-    PORT=3000
-    ```
+   ```env
+   TELEGRAM_BOT_TOKEN=your-telegram-bot-token
+   TELEGRAM_WEBHOOK_DOMAIN=your-webhook-domain
+   REQUIRED_CHILDREN=3
+   PREMIUM_CHAT_IDS="-100..., -100..."
+   BASIC_CHAT_ID=-100...
+   PORT=3000
+   DATABASE_URL=your-database-url
+   ```
 
-    Replace `your-telegram-bot-token`, `your-webhook-domain`, `PREMIUM_CHAT_ID` and `BASIC_CHAT_ID` with your actual Telegram bot token, webhook domain....
+   Replace `your-telegram-bot-token`, `your-webhook-domain`, `PREMIUM_CHAT_IDS` and `BASIC_CHAT_ID` with your actual Telegram bot token, webhook domain....
 
 4. **Run the Prisma migrations:**
 
-    ```bash
-    yarn prisma migrate deploy
-    ```
+   ```bash
+   yarn prisma migrate deploy
+   ```
 
 ### Usage
 
 - **Build the TypeScript code:**
 
-    ```bash
-    yarn build
-    ```
+  ```bash
+  yarn build
+  ```
 
 - **Start the bot:**
 
-    ```bash
-    yarn start
-    ```
+  ```bash
+  yarn start
+  ```
 
-    OR
+  OR
 
 - **Start the bot in development mode with auto-reloading using Nodemon:**
 
-    ```bash
-    yarn dev
-    ```
+  ```bash
+  yarn dev
+  ```
 
 ### Commands
 
-- `/info`: Get information about your referral link, the number of users referred, and access to the premium channel.
+- `/info`: Get information about your referral link and the number of users referred.
+- `/links`: Get the premium links
