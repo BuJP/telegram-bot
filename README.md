@@ -38,6 +38,7 @@ A Telegram bot implemented in Node.js using the Telegraf framework, designed to 
    PREMIUM_CHAT_IDS="-100..., -100..."
    BASIC_CHAT_ID=-100...
    PORT=3000
+   DATABASE_URL=your-database-url
    ```
 
    Replace `your-telegram-bot-token`, `your-webhook-domain`, `PREMIUM_CHAT_IDS` and `BASIC_CHAT_ID` with your actual Telegram bot token, webhook domain....
