@@ -16,7 +16,7 @@ export class LinksCommand extends TelegramAction {
         },
         select: {
           invitation_link: true,
-          childrens: true,
+          invitationsSent: true,
           premium_links: true,
           id: true,
         },
@@ -28,10 +28,14 @@ export class LinksCommand extends TelegramAction {
         return;
       }
 
-      if (user.childrens.length < this.configuration.requiredChildrens) {
+      if (
+        user.invitationsSent.length <
+        this.configuration.numberOfInvitationsRequired
+      ) {
         ctx.reply(
           `Veuillez inviter ${
-            this.configuration.requiredChildrens - user.childrens.length
+            this.configuration.numberOfInvitationsRequired -
+            user.invitationsSent.length
           } utilisateurs pour accéder aux liens premium.`
         );
 
