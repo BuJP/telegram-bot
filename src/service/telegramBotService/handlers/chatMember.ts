@@ -66,10 +66,10 @@ export class ChatMemberHandler extends TelegramAction {
     }
 
     // Create a relation between the new user and the inviting user
-    await prisma.relation.create({
+    await prisma.invitation.create({
       data: {
-        children_id: newUser.id,
-        parent_id: linkedUser?.id || "",
+        inviteeId: newUser.id,
+        inviterId: linkedUser?.id || "",
       },
     });
   }
