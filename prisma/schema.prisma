@@ -38,6 +38,15 @@ model Premium_link {
   id Int @id @default(autoincrement())
   user User @relation("user", fields: [user_id], references: [id])
   user_id String 
-  chat_id String @unique
+  channel Premium_channel @relation("channel", fields: [channel_id], references: [id])
+  channel_id String @unique
   link String
+}
+
+model Premium_channel {
+  id String @id
+  name String 
+  isEnabled Boolean
+  premium_links Premium_link[] @relation("channel")
+  createdAt DateTime @default(now())
 }

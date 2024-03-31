@@ -42,37 +42,44 @@ export class LinksCommand extends TelegramAction {
         return;
       }
 
-      const userLinks = user.premium_links.filter((premiumLink) =>
-        this.configuration.premiumChatIds.includes(premiumLink.chat_id)
-      );
+      const premiumChannels = await prisma.premium_channel.findMany({
+        where: {
+          isEnabled: true,
+        },
+      });
 
-      const missingChatIdLinks = this.configuration.premiumChatIds.filter(
-        (chatId) => {
-          return !userLinks.find((userLink) => userLink.chat_id === chatId);
+      const userChannelLinks: Array<{ link: string; name: string }> = [];
+
+      for (const channel of premiumChannels) {
+        let userLink = user.premium_links.find(
+          (userLink) => channel.id === userLink.channel_id
+        );
+
+        if (!userLink) {
+          //Generate a premium chat invite link
+          const link = await ctx.telegram.createChatInviteLink(channel.id, {
+            member_limit: 1,
+          });
+
+          userLink = await prisma.premium_link.create({
+            data: {
+              user_id: user.id,
+              link: link.invite_link,
+              channel_id: channel.id,
+            },
+          });
         }
-      );
 
-      for (const chatId of missingChatIdLinks) {
-        //Generate a premium chat invite link
-        const link = await ctx.telegram.createChatInviteLink(chatId, {
-          member_limit: 1,
+        userChannelLinks.push({
+          name: channel.name,
+          link: userLink.link,
         });
-
-        const createdLink = await prisma.premium_link.create({
-          data: {
-            user_id: user.id,
-            link: link.invite_link,
-            chat_id: chatId,
-          },
-        });
-
-        userLinks.push(createdLink);
       }
 
       ctx.reply(
-        `Voici vos liens pour accéder aux cannaux premium. Veuillez noter que ces liens ne seront utilisables qu'une seule fois. Assurez-vous de l'utiliser avec précaution \n\n ${userLinks
-          .map(({ link }) => link)
-          .join("\n")}`
+        `Voici vos liens pour accéder aux cannaux premium. Veuillez noter que ces liens ne seront utilisables qu'une seule fois. Assurez-vous de l'utiliser avec précaution \n\n ${userChannelLinks
+          .map(({ link, name }) => `${name} : ${link}`)
+          .join("\n\n")}`
       );
     });
   }
