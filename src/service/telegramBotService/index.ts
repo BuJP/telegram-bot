@@ -20,7 +20,6 @@ export class TelegramBotService {
 
     const actionsConfiguration: HandlerConfiguration = {
       basicChatId: this.environmentVariableService.get("BASIC_CHAT_ID"),
-      premiumChatIds: this.environmentVariableService.get("PREMIUM_CHAT_IDS"),
       numberOfInvitationsRequired:
         this.environmentVariableService.get("REQUIRED_CHILDREN"),
     };
