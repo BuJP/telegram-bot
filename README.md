@@ -49,6 +49,8 @@ A Telegram bot implemented in Node.js using the Telegraf framework, designed to 
    yarn prisma migrate deploy
    ```
 
+> After migration, please ensure to add the premium channels to the `Premium_channel` table. The `id` field corresponds to the Telegram channel's ID.
+
 ### Usage
 
 - **Build the TypeScript code:**
