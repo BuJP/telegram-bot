@@ -35,7 +35,6 @@ A Telegram bot implemented in Node.js using the Telegraf framework, designed to 
    TELEGRAM_BOT_TOKEN=your-telegram-bot-token
    TELEGRAM_WEBHOOK_DOMAIN=your-webhook-domain
    REQUIRED_CHILDREN=3
-   PREMIUM_CHAT_IDS="-100..., -100..."
    BASIC_CHAT_ID=-100...
    PORT=3000
    DATABASE_URL=your-database-url
