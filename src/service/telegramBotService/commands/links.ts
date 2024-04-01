@@ -79,7 +79,8 @@ export class LinksCommand extends TelegramAction {
       ctx.reply(
         `Voici vos liens pour accéder aux cannaux premium. Veuillez noter que ces liens ne seront utilisables qu'une seule fois. Assurez-vous de l'utiliser avec précaution \n\n ${userChannelLinks
           .map(({ link, name }) => `${name} : ${link}`)
-          .join("\n\n")}`
+          .join("\n\n")}` +
+          "\n\nConseil : créez un dossier telegram contenant tous ces canaux ! 😉"
       );
     });
   }
