@@ -35,19 +35,20 @@ A Telegram bot implemented in Node.js using the Telegraf framework, designed to 
    TELEGRAM_BOT_TOKEN=your-telegram-bot-token
    TELEGRAM_WEBHOOK_DOMAIN=your-webhook-domain
    REQUIRED_CHILDREN=3
-   PREMIUM_CHAT_IDS="-100..., -100..."
    BASIC_CHAT_ID=-100...
    PORT=3000
    DATABASE_URL=your-database-url
    ```
 
-   Replace `your-telegram-bot-token`, `your-webhook-domain`, `PREMIUM_CHAT_IDS` and `BASIC_CHAT_ID` with your actual Telegram bot token, webhook domain....
+   Replace `your-telegram-bot-token`, `your-webhook-domain` and `BASIC_CHAT_ID` with your actual Telegram bot token, webhook domain....
 
 4. **Run the Prisma migrations:**
 
    ```bash
    yarn prisma migrate deploy
    ```
+
+> After migration, please ensure to add the premium channels to the `Premium_channel` table. The `id` field corresponds to the Telegram channel's ID.
 
 ### Usage
 

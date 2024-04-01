@@ -10,9 +10,6 @@ export const EnvSchema = z.object({
     })
     .transform((value) => Number(value))
     .default("3"),
-  PREMIUM_CHAT_IDS: z
-    .string()
-    .transform((value) => value.split(",").map((id) => id.trim())),
   BASIC_CHAT_ID: z.string(),
   PORT: z
     .string()
