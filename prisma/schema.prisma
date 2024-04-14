@@ -39,8 +39,10 @@ model Premium_link {
   user User @relation("user", fields: [user_id], references: [id])
   user_id String 
   channel Premium_channel @relation("channel", fields: [channel_id], references: [id])
-  channel_id String @unique
+  channel_id String
   link String
+
+  @@unique([channel_id, user_id])
 }
 
 model Premium_channel {
